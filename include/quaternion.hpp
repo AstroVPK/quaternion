@@ -36,11 +36,11 @@ namespace algebra {
 
       quaternion(T u) : quaternion(u, static_cast<T>(0), static_cast<T>(0), static_cast<T>(0)) {};
 
-      T real();
+      T real() const;
 
       void real(T const & v);
 
-      std::array<T, 3> imag();
+      std::array<T, 3> imag() const;
 
       void imag(std::array<T, 3> const & v);
 
@@ -106,7 +106,7 @@ namespace algebra {
   }
 
   template <typename T>
-  T algebra::quaternion<T>::real() {
+  T algebra::quaternion<T>::real() const {
     return a;
   }
 
@@ -116,7 +116,7 @@ namespace algebra {
   }
 
   template <typename T>
-  std::array<T, 3> algebra::quaternion<T>::imag() {
+  std::array<T, 3> algebra::quaternion<T>::imag() const {
     return std::array<T, 3> {b, c, d};
   }
 
