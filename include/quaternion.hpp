@@ -59,6 +59,10 @@ namespace algebra {
       template <typename U>
       quaternion(std::complex<U> z);
 
+      const quaternion<T> & operator+=(quaternion<T> const & q);
+
+      const quaternion<T> & operator-=(quaternion<T> const & q);
+
       friend std::ostream& operator<< <T>(std::ostream& os, const quaternion<T>& q);
 
       friend const quaternion<T> operator+ <T>(const quaternion<T>& q1, const quaternion<T>& q2);
@@ -121,6 +125,24 @@ namespace algebra {
     b = v[0];
     c = v[1];
     d = v[2];
+  }
+
+  template<typename T>
+  const quaternion<T>& algebra::quaternion<T>::operator+=(quaternion<T> const & q) {
+    this->a += q.a;
+    this->b += q.b;
+    this->c += q.c;
+    this->d += q.d;
+    return *this;
+  }
+
+  template<typename T>
+  const quaternion<T>& algebra::quaternion<T>::operator-=(quaternion<T> const & q) {
+    this->a -= q.a;
+    this->b -= q.b;
+    this->c -= q.c;
+    this->d -= q.d;
+    return *this;
   }
 
   template <typename T>

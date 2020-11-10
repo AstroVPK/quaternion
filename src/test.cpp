@@ -82,6 +82,20 @@ int main() {
   algebra::quaternion<double> k4_quaternion = f4_quaternion - g4_quaternion - h4_quaternion - i4_quaternion;
   std::cout << f4_quaternion << " - " << g4_quaternion << " - " << h4_quaternion << " - " << i4_quaternion << " = " << k4_quaternion << std::endl;
 
+  std::cout << "Adding a quaternion to a quaternion of the same type" << std::endl;
+  algebra::quaternion<double> l4_quaternion(i, j, k, l);
+  std::cout << "l4_quaternion: " << l4_quaternion << std::endl;
+  std::cout << l4_quaternion << " += " << f4_quaternion;
+  l4_quaternion += f4_quaternion;
+  std::cout << " = " << l4_quaternion << std::endl;
+
+  std::cout << "Subtracting a quaternion from a quaternion of the same type" << std::endl;
+  algebra::quaternion<double> m4_quaternion(i, j, k, l);
+  std::cout << "m4_quaternion: " << m4_quaternion << std::endl;
+  std::cout << m4_quaternion << " -= " << f4_quaternion;
+  m4_quaternion -= f4_quaternion;
+  std::cout << " = " << m4_quaternion << std::endl;
+
   std::cout << "Getting the real part of k4_quaternion" << std::endl;
   std::cout << "k4_quaternion.real() == " << k4_quaternion.real() << std::endl;
 
