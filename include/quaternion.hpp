@@ -14,10 +14,10 @@ namespace algebra {
   std::ostream& operator<<(std::ostream& os, const quaternion<T>& q);
 
   template <typename T>
-  quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2);
+  const quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2);
 
   template <typename T>
-  quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2);
+  const quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2);
 
   template <typename T>
   class quaternion {
@@ -61,9 +61,9 @@ namespace algebra {
 
       friend std::ostream& operator<< <T>(std::ostream& os, const quaternion<T>& q);
 
-      friend quaternion<T> operator+ <T>(const quaternion<T>& q1, const quaternion<T>& q2);
+      friend const quaternion<T> operator+ <T>(const quaternion<T>& q1, const quaternion<T>& q2);
 
-      friend quaternion<T> operator- <T>(const quaternion<T>& q1, const quaternion<T>& q2);
+      friend const quaternion<T> operator- <T>(const quaternion<T>& q1, const quaternion<T>& q2);
 
   };
 
@@ -102,32 +102,6 @@ namespace algebra {
   }
 
   template <typename T>
-  std::ostream& operator<<(std::ostream& os, const quaternion<T>& q) {
-      os << "(" << q.a << "," << q.b << "," << q.c << "," << q.d << ")";
-      return os;
-  }
-
-  template <typename T>
-  quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2) {
-      quaternion<T> q3;
-      q3.a = q1.a + q2.a;
-      q3.b = q1.b + q2.b;
-      q3.c = q1.c + q2.c;
-      q3.d = q1.d + q2.d;
-      return q3;
-  }
-
-  template <typename T>
-  quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2) {
-      quaternion<T> q3;
-      q3.a = q1.a - q2.a;
-      q3.b = q1.b - q2.b;
-      q3.c = q1.c - q2.c;
-      q3.d = q1.d - q2.d;
-      return q3;
-  }
-
-  template <typename T>
   T algebra::quaternion<T>::real() {
     return a;
   }
@@ -147,6 +121,32 @@ namespace algebra {
     b = v[0];
     c = v[1];
     d = v[2];
+  }
+
+  template <typename T>
+  std::ostream& operator<<(std::ostream& os, const quaternion<T>& q) {
+      os << "(" << q.a << "," << q.b << "," << q.c << "," << q.d << ")";
+      return os;
+  }
+
+  template <typename T>
+  const quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2) {
+      quaternion<T> q3;
+      q3.a = q1.a + q2.a;
+      q3.b = q1.b + q2.b;
+      q3.c = q1.c + q2.c;
+      q3.d = q1.d + q2.d;
+      return q3;
+  }
+
+  template <typename T>
+  const quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2) {
+      quaternion<T> q3;
+      q3.a = q1.a - q2.a;
+      q3.b = q1.b - q2.b;
+      q3.c = q1.c - q2.c;
+      q3.d = q1.d - q2.d;
+      return q3;
   }
 
 }
