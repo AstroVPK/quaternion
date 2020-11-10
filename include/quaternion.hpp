@@ -21,9 +21,10 @@ namespace exarkun {
   template <typename T>
   class quaternion {
 
-    public:
+  private:
       T a, b, c, d;
 
+  public:
       quaternion();
 
       quaternion(T u, T v, T w, T x);
@@ -33,6 +34,10 @@ namespace exarkun {
       quaternion(T u, T v) : quaternion(u, v, static_cast<T>(0), static_cast<T>(0)) {};
 
       quaternion(T u) : quaternion(u, static_cast<T>(0), static_cast<T>(0), static_cast<T>(0)) {};
+
+      T real();
+
+      void real(const T & v);
 
       template <typename U, typename V, typename W, typename X>
       quaternion(U u, V v, W w, X x);
@@ -115,6 +120,16 @@ namespace exarkun {
       q3.c = q1.c - q2.c;
       q3.d = q1.d - q2.d;
       return q3;
+  }
+
+  template <typename T>
+  T exarkun::quaternion<T>::real() {
+    return a;
+  }
+
+  template <typename T>
+  void exarkun::quaternion<T>::real(const T & v) {
+    a = v;
   }
 
 }

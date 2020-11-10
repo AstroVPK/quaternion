@@ -82,4 +82,11 @@ int main() {
   exarkun::quaternion<double> k4_quaternion = f4_quaternion - g4_quaternion - h4_quaternion - i4_quaternion;
   std::cout << f4_quaternion << " - " << g4_quaternion << " - " << h4_quaternion << " - " << i4_quaternion << " = " << k4_quaternion << std::endl;
 
+  std::cout << "Getting the real part of k4_quaternion" << std::endl;
+  std::cout << "k4_quaternion.real() == " << k4_quaternion.real() << std::endl;
+
+  std::cout << "Setting the real part of k4_quaternion = 0" << std::endl;
+  k4_quaternion.real(0.0);
+  std::cout << "k4_quaternion.real() == " << k4_quaternion.real() << std::endl;
+
 }
