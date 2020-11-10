@@ -7,19 +7,7 @@
 
 
 namespace algebra {
-/*
-  template <typename T>
-  class quaternion;
 
-  template <typename T>
-  std::ostream& operator<<(std::ostream& os, const quaternion<T>& q);
-
-  template <typename T>
-  const quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2);
-
-  template <typename T>
-  const quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2);
-*/
   template <typename T>
   class quaternion {
 
@@ -62,12 +50,6 @@ namespace algebra {
       const quaternion<T> & operator+=(quaternion<T> const & q);
 
       const quaternion<T> & operator-=(quaternion<T> const & q);
-
-      //friend std::ostream& operator<< <T>(std::ostream& os, const quaternion<T>& q);
-
-      //friend const quaternion<T> operator+ <T>(const quaternion<T>& q1, const quaternion<T>& q2);
-
-      //friend const quaternion<T> operator- <T>(const quaternion<T>& q1, const quaternion<T>& q2);
 
   };
 
@@ -147,18 +129,18 @@ namespace algebra {
 
   template <typename T>
   std::ostream& operator<<(std::ostream& os, const quaternion<T>& q) {
-      os << "(" << q.a << "," << q.b << "," << q.c << "," << q.d << ")";
-      return os;
+    os << "(" << q.a << "," << q.b << "," << q.c << "," << q.d << ")";
+    return os;
   }
 
   template <typename T1, typename T2>
   const quaternion<typename std::common_type<T1, T2>::type> operator+(const quaternion<T1>& q1, const quaternion<T2>& q2) {
-      return quaternion<typename std::common_type<T1, T2>::type>(q1.a + q2.a, q1.b + q2.b, q1.c + q2.c, q1.d + q2.d);
+    return quaternion<typename std::common_type<T1, T2>::type>(q1.a + q2.a, q1.b + q2.b, q1.c + q2.c, q1.d + q2.d);
   }
 
-  template <typename T>
-  const quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2) {
-      return quaternion<T>(q1.a - q2.a, q1.b - q2.b, q1.c - q2.c, q1.d - q2.d);
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator-(const quaternion<T1>& q1, const quaternion<T2>& q2) {
+    return quaternion<typename std::common_type<T1, T2>::type>(q1.a - q2.a, q1.b - q2.b, q1.c - q2.c, q1.d - q2.d);
   }
 
 }
