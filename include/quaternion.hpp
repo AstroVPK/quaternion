@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-namespace exarkun {
+namespace algebra {
 
   template <typename T>
   class quaternion;
@@ -63,7 +63,7 @@ namespace exarkun {
   };
 
   template <typename T>
-  exarkun::quaternion<T>::quaternion() {
+  algebra::quaternion<T>::quaternion() {
     a = static_cast<T>(0);
     b = static_cast<T>(0);
     c = static_cast<T>(0);
@@ -71,7 +71,7 @@ namespace exarkun {
   }
 
   template <typename T>
-  exarkun::quaternion<T>::quaternion(T u, T v, T w, T x) {
+  algebra::quaternion<T>::quaternion(T u, T v, T w, T x) {
     a = u;
     b = v;
     c = w;
@@ -80,7 +80,7 @@ namespace exarkun {
 
   template <typename T>
   template <typename U, typename V, typename W, typename X>
-  exarkun::quaternion<T>::quaternion(U u, V v, W w, X x) {
+  algebra::quaternion<T>::quaternion(U u, V v, W w, X x) {
     a = static_cast<T>(u);
     b = static_cast<T>(v);
     c = static_cast<T>(w);
@@ -89,7 +89,7 @@ namespace exarkun {
 
   template <typename T>
   template <typename U>
-  exarkun::quaternion<T>::quaternion(std::complex<U> z) {
+  algebra::quaternion<T>::quaternion(std::complex<U> z) {
     a = static_cast<T>(z.real());
     b = static_cast<T>(z.imag());
     c = static_cast<T>(0);
@@ -123,12 +123,12 @@ namespace exarkun {
   }
 
   template <typename T>
-  T exarkun::quaternion<T>::real() {
+  T algebra::quaternion<T>::real() {
     return a;
   }
 
   template <typename T>
-  void exarkun::quaternion<T>::real(const T & v) {
+  void algebra::quaternion<T>::real(const T & v) {
     a = v;
   }
 
