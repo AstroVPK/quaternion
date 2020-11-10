@@ -131,22 +131,12 @@ namespace algebra {
 
   template <typename T>
   const quaternion<T> operator+(const quaternion<T>& q1, const quaternion<T>& q2) {
-      quaternion<T> q3;
-      q3.a = q1.a + q2.a;
-      q3.b = q1.b + q2.b;
-      q3.c = q1.c + q2.c;
-      q3.d = q1.d + q2.d;
-      return q3;
+      return quaternion<T>(q1.a + q2.a, q1.b + q2.b, q1.c + q2.c, q1.d + q2.d);
   }
 
   template <typename T>
   const quaternion<T> operator-(const quaternion<T>& q1, const quaternion<T>& q2) {
-      quaternion<T> q3;
-      q3.a = q1.a - q2.a;
-      q3.b = q1.b - q2.b;
-      q3.c = q1.c - q2.c;
-      q3.d = q1.d - q2.d;
-      return q3;
+      return quaternion<T>(q1.a - q2.a, q1.b - q2.b, q1.c - q2.c, q1.d - q2.d);
   }
 
 }
