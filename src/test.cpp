@@ -89,4 +89,13 @@ int main() {
   k4_quaternion.real(0.0);
   std::cout << "k4_quaternion.real() == " << k4_quaternion.real() << std::endl;
 
+  std::cout << "Getting the imaginary part of k4_quaternion" << std::endl;
+  std::array<double, 3> k4_imaginary = k4_quaternion.imag();
+  std::cout << "k4_quaternion.imag() == (" << k4_imaginary[0] << "," << k4_imaginary[1] << "," << k4_imaginary[2] << ")" << std::endl;
+
+  std::cout << "Setting the imaginary part of k4_quaternion = (0, 0, 0)" << std::endl;
+  k4_quaternion.imag(std::array<double, 3>{0.0, 0.0, 0.0});
+  k4_imaginary = k4_quaternion.imag();
+  std::cout << "k4_quaternion.imag() == (" << k4_imaginary[0] << "," << k4_imaginary[1] << "," << k4_imaginary[2] << ")" << std::endl;
+
 }

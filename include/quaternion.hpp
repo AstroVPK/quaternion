@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <complex>
+#include <array>
 #include <iostream>
 
 
@@ -37,7 +38,11 @@ namespace algebra {
 
       T real();
 
-      void real(const T & v);
+      void real(T const & v);
+
+      std::array<T, 3> imag();
+
+      void imag(std::array<T, 3> const & v);
 
       template <typename U, typename V, typename W, typename X>
       quaternion(U u, V v, W w, X x);
@@ -128,8 +133,20 @@ namespace algebra {
   }
 
   template <typename T>
-  void algebra::quaternion<T>::real(const T & v) {
+  void algebra::quaternion<T>::real(T const & v) {
     a = v;
+  }
+
+  template <typename T>
+  std::array<T, 3> algebra::quaternion<T>::imag() {
+    return std::array<T, 3> {b, c, d};
+  }
+
+  template <typename T>
+  void algebra::quaternion<T>::imag(std::array<T, 3> const & v) {
+    b = v[0];
+    c = v[1];
+    d = v[2];
   }
 
 }
