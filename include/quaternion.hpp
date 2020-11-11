@@ -12,6 +12,8 @@ namespace algebra {
   class quaternion {
 
   public:
+      using value_type = T;
+
       T a, b, c, d;
 
       quaternion();
@@ -139,8 +141,28 @@ namespace algebra {
   }
 
   template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator+(const quaternion<T1>& q1, const T2& q2) {
+    return quaternion<typename std::common_type<T1, T2>::type>(static_cast<typename std::common_type<T1, T2>::type>(q1.a) + static_cast<typename std::common_type<T1, T2>::type>(q2), q1.b, q1.c, q1.d);
+  }
+
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator+(const T1& q1, const quaternion<T2>& q2) {
+    return quaternion<typename std::common_type<T1, T2>::type>(static_cast<typename std::common_type<T1, T2>::type>(q1) + static_cast<typename std::common_type<T1, T2>::type>(q2.a), q2.b, q2.c, q2.d);
+  }
+
+  template <typename T1, typename T2>
   const quaternion<typename std::common_type<T1, T2>::type> operator-(const quaternion<T1>& q1, const quaternion<T2>& q2) {
     return quaternion<typename std::common_type<T1, T2>::type>(q1.a - q2.a, q1.b - q2.b, q1.c - q2.c, q1.d - q2.d);
+  }
+
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator-(const quaternion<T1>& q1, const T2& q2) {
+    return quaternion<typename std::common_type<T1, T2>::type>(static_cast<typename std::common_type<T1, T2>::type>(q1.a) - static_cast<typename std::common_type<T1, T2>::type>(q2), q1.b, q1.c, q1.d);
+  }
+
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator-(const T1& q1, const quaternion<T2>& q2) {
+    return quaternion<typename std::common_type<T1, T2>::type>(static_cast<typename std::common_type<T1, T2>::type>(q1) - static_cast<typename std::common_type<T1, T2>::type>(q2.a), q2.b, q2.c, q2.d);
   }
 
 }

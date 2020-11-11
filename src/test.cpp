@@ -60,8 +60,8 @@ int main() {
   std::cout << e1_complex << std::endl;
 
   std::cout << "Constructing a quaternion<int> from the complex<double>" << std::endl;
-  algebra::quaternion<int> e1_quaternion(e1_complex);
-  std::cout << e1_quaternion << std::endl;
+  algebra::quaternion<int> e4_quaternion(e1_complex);
+  std::cout << e4_quaternion << std::endl;
 
   algebra::quaternion<double> f4_quaternion(1.33, 7.67, -6.2, -7.2);
   algebra::quaternion<double> g4_quaternion(9.56, -2.56, -4.92, 8.21);
@@ -111,5 +111,19 @@ int main() {
   k4_quaternion.imag(std::array<double, 3>{0.0, 0.0, 0.0});
   k4_imaginary = k4_quaternion.imag();
   std::cout << "k4_quaternion.imag() == (" << k4_imaginary[0] << "," << k4_imaginary[1] << "," << k4_imaginary[2] << ")" << std::endl;
+
+  std::cout << "The largest value that a component of quaternion<double> can hold is " << std::numeric_limits<algebra::quaternion<double>::value_type>::max() << std::endl;
+
+  std::cout << "m4_quaternion + 5 = " << m4_quaternion + 5 << std::endl;
+  std::cout << "e1_quaternion + 5.63d = " << e4_quaternion + 5.63d << std::endl;
+
+  std::cout << "4 + m4_quaternion = " << 4 + m4_quaternion << std::endl;
+  std::cout << "6.23d + e1_quaternion = " << 6.23d + e4_quaternion << std::endl;
+
+  std::cout << "m4_quaternion - 5 = " << m4_quaternion - 5 << std::endl;
+  std::cout << "e1_quaternion - 5.63d = " << e4_quaternion - 5.63d << std::endl;
+
+  std::cout << "4 - m4_quaternion = " << 4 - m4_quaternion << std::endl;
+  std::cout << "6.23d - e1_quaternion = " << 6.23d - e4_quaternion << std::endl;
 
 }
