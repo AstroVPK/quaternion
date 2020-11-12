@@ -1,5 +1,6 @@
 #include <cmath>
 #include <complex>
+#include <limits>
 #include <iostream>
 
 #include "quaternion.hpp"
