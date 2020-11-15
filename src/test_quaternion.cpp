@@ -73,12 +73,23 @@ TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
   }
 }
 
-int main(int argc, char **argv) {
-  unsigned int a = 65525;
-  std::cout << "unsigned int a = " << a << std::endl;
+TYPED_TEST(QuaternionTests, AddCharInPlace) {
+  int i = 1, j = 2, k = 3, l = 4;
+  this->SetUp(i, j, k, l);
+  char a = 1;
+  this->q += a;
+  EXPECT_EQ(this->q.a, i + a);
+}
 
-  short b = static_cast<short>(a);
-  std::cout << "short b = static_cast<short>(a) = " << b <<std::endl;
+TYPED_TEST(QuaternionTests, AddUCharPlace) {
+  int i = 1, j = 2, k = 3, l = 4;
+  this->SetUp(i, j, k, l);
+  unsigned char a = 1;
+  this->q += a;
+  EXPECT_EQ(this->q.a, i + a);
+}
+
+int main(int argc, char **argv) {
 
   /*
   std::cout << "Default constructing a quaternion" << std::endl;
