@@ -38,22 +38,22 @@ TYPED_TEST(QuaternionTests, ValueInitialization) {
 TYPED_TEST(QuaternionTests, DirectInitialization00) {
   unsigned int i = 5, j = 235, k = 67, l = 82;
   this->SetUp(i, j, k, l);
-  EXPECT_EQ(this->q.a, static_cast<TypeParam>(5));
-  EXPECT_EQ(this->q.b, static_cast<TypeParam>(235));
-  EXPECT_EQ(this->q.c, static_cast<TypeParam>(67));
-  EXPECT_EQ(this->q.d, static_cast<TypeParam>(82));
+  EXPECT_EQ(this->q.a, 5);
+  EXPECT_EQ(this->q.b, 235);
+  EXPECT_EQ(this->q.c, 67);
+  EXPECT_EQ(this->q.d, 82);
 }
 
 TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
   int i = 5;
   float j = 19168720229.277867697987;
-  char k = 235;
+  char k = -235;
   long double l = -2.6;
   this->SetUp(i, j, k, l);
-  EXPECT_EQ(this->q.a, static_cast<TypeParam>(5));
-  EXPECT_EQ(this->q.b, static_cast<TypeParam>(19168720229.277867697987));
-  EXPECT_EQ(this->q.c, static_cast<TypeParam>(235));
-  EXPECT_EQ(this->q.d, static_cast<TypeParam>(-2.6));
+  EXPECT_EQ(this->q.a, 5);
+  EXPECT_EQ(this->q.b, 19168720229.277867697987);
+  EXPECT_EQ(this->q.c, -235);
+  EXPECT_EQ(this->q.d, -2.6);
 }
 
 int main(int argc, char **argv) {
