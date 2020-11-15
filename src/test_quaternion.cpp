@@ -2,6 +2,7 @@
 #include <complex>
 #include <limits>
 #include <list>
+#include <cstdint>
 #include <iostream>
 #include <typeinfo>
 
@@ -38,25 +39,47 @@ TYPED_TEST(QuaternionTests, ValueInitialization) {
 TYPED_TEST(QuaternionTests, DirectInitialization00) {
   unsigned int i = 5, j = 235, k = 67, l = 82;
   this->SetUp(i, j, k, l);
-  EXPECT_EQ(this->q.a, 5);
-  EXPECT_EQ(this->q.b, 235);
-  EXPECT_EQ(this->q.c, 67);
-  EXPECT_EQ(this->q.d, 82);
+  if (static_cast<TypeParam>(i) == i) {
+    EXPECT_EQ(this->q.a, i);
+  }
+  if (static_cast<TypeParam>(j) == j) {
+    EXPECT_EQ(this->q.b, j);
+  }
+  if (static_cast<TypeParam>(k) == k) {
+    EXPECT_EQ(this->q.c, k);
+  }
+  if (static_cast<TypeParam>(l) == l) {
+    EXPECT_EQ(this->q.d, l);
+  }
 }
 
 TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
   int i = 5;
   float j = 19168720229.277867697987;
-  char k = -235;
+  short k = -235;
   long double l = -2.6;
   this->SetUp(i, j, k, l);
-  EXPECT_EQ(this->q.a, 5);
-  EXPECT_EQ(this->q.b, 19168720229.277867697987);
-  EXPECT_EQ(this->q.c, -235);
-  EXPECT_EQ(this->q.d, -2.6);
+  if (static_cast<TypeParam>(i) == i) {
+    EXPECT_EQ(this->q.a, i);
+  }
+  if (static_cast<TypeParam>(j) == j) {
+    EXPECT_EQ(this->q.b, j);
+  }
+  if (static_cast<TypeParam>(k) == k) {
+    EXPECT_EQ(this->q.c, k);
+  }
+  if (static_cast<TypeParam>(l) == l) {
+    EXPECT_EQ(this->q.d, l);
+  }
 }
 
 int main(int argc, char **argv) {
+  unsigned int a = 65525;
+  std::cout << "unsigned int a = " << a << std::endl;
+
+  short b = static_cast<short>(a);
+  std::cout << "short b = static_cast<short>(a) = " << b <<std::endl;
+
   /*
   std::cout << "Default constructing a quaternion" << std::endl;
   algebra::quaternion<int> a_quaternion;
