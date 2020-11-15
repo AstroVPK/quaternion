@@ -3,10 +3,15 @@
 #include <limits>
 #include <iostream>
 
+#include "gtest/gtest.h"
 #include "quaternion.hpp"
 
+TEST(BasicTest, Sample) {
+  EXPECT_EQ(1, 1);
+}
 
-int main() {
+int main(int argc, char **argv) {
+
   std::cout << "Default constructing a quaternion" << std::endl;
   algebra::quaternion<int> a_quaternion;
   std::cout << a_quaternion << std::endl;
@@ -126,5 +131,8 @@ int main() {
 
   std::cout << "4 - m4_quaternion = " << 4 - m4_quaternion << std::endl;
   std::cout << "6.23d - e1_quaternion = " << 6.23d - e4_quaternion << std::endl;
+
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 
 }

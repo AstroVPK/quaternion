@@ -3,6 +3,11 @@ cmake_minimum_required(VERSION 3.10)
 # Set the project name
 project(Quaternion  VERSION 0.0.1)
 
+# Set the C++ standard to C++20
+set(CMAKE_CXX_STANDARD 20)
+
+enable_testing()
+
 # Set some directories
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -47,6 +52,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Add the executable & link against gtest or gtest_main
-add_executable(test ${PROJECT_SOURCE_DIR}/src/test.cpp)
-target_link_libraries(test gtest_main)
-add_test(NAME example_test COMMAND example)
+add_executable(test_quaternion ${PROJECT_SOURCE_DIR}/src/test.cpp)
+target_link_libraries(test_quaternion gtest_main)
+add_test(NAME quaternion_test COMMAND test_quaternion)
