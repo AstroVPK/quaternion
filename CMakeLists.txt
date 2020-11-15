@@ -52,6 +52,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Add the executable & link against gtest or gtest_main
-add_executable(test_quaternion ${PROJECT_SOURCE_DIR}/src/test.cpp)
+add_executable(test_quaternion ${PROJECT_SOURCE_DIR}/src/test_quaternion.cpp)
 target_link_libraries(test_quaternion gtest_main)
 add_test(NAME quaternion_test COMMAND test_quaternion)
