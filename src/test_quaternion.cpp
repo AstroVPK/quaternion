@@ -1,17 +1,63 @@
 #include <cmath>
 #include <complex>
 #include <limits>
+#include <list>
 #include <iostream>
+#include <typeinfo>
 
 #include "gtest/gtest.h"
 #include "quaternion.hpp"
 
-TEST(BasicTest, Sample) {
-  EXPECT_EQ(1, 1);
+
+template <typename T>
+class QuaternionTests : public testing::Test {
+ public:
+  algebra::quaternion<T> q;
+
+  void SetUp(const T& i, const T& j, const T& k, const T& l) {
+    this->q = algebra::quaternion(i, j, k, l);
+  }
+
+  template <typename I, typename J, typename K, typename L>
+  void SetUp(I const & i, J const & j, K const & k, L const & l) {
+    this->q = algebra::quaternion<T>(i, j, k, l);
+  }
+};
+
+using MyTypes = ::testing::Types<char, unsigned char, short, unsigned short, int, unsigned int, long, unsigned long, long long, unsigned long long, float, double, long double>;
+
+TYPED_TEST_SUITE(QuaternionTests, MyTypes);
+
+TYPED_TEST(QuaternionTests, ValueInitialization) {
+  EXPECT_EQ(this->q.a, 0);
+  EXPECT_EQ(this->q.b, 0);
+  EXPECT_EQ(this->q.c, 0);
+  EXPECT_EQ(this->q.d, 0);
+}
+
+TYPED_TEST(QuaternionTests, DirectInitialization00) {
+  unsigned int i = 5, j = 235, k = 67, l = 82;
+  this->SetUp(i, j, k, l);
+  EXPECT_EQ(this->q.a, static_cast<TypeParam>(5));
+  EXPECT_EQ(this->q.b, static_cast<TypeParam>(235));
+  EXPECT_EQ(this->q.c, static_cast<TypeParam>(67));
+  EXPECT_EQ(this->q.d, static_cast<TypeParam>(82));
+}
+
+TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
+  int i = 5;
+  float j = 19168720229.277867697987;
+  char k = 235;
+  long double l = -2.6;
+  this->SetUp(i, j, k, l);
+  EXPECT_EQ(this->q.a, static_cast<TypeParam>(5));
+  EXPECT_EQ(this->q.b, static_cast<TypeParam>(19168720229.277867697987));
+  EXPECT_EQ(this->q.c, static_cast<TypeParam>(235));
+  EXPECT_EQ(this->q.d, static_cast<TypeParam>(-2.6));
 }
 
 int main(int argc, char **argv) {
-
+  /*
   std::cout << "Default constructing a quaternion" << std::endl;
   algebra::quaternion<int> a_quaternion;
   std::cout << a_quaternion << std::endl;
@@ -131,7 +177,7 @@ int main(int argc, char **argv) {
 
   std::cout << "4 - m4_quaternion = " << 4 - m4_quaternion << std::endl;
   std::cout << "6.23d - e1_quaternion = " << 6.23d - e4_quaternion << std::endl;
-
+*/
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 
