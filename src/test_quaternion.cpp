@@ -74,47 +74,34 @@ TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
 }
 
 
-#define ADD_IN_PLACE_TYPED_TEST(TYPE)               \
-TYPED_TEST(QuaternionTests, AddInPlace_##TYPE) {    \
-  int i = 1, j = 2, k = 3, l = 4;                   \
-  this->SetUp(i, j, k, l);                          \
-  TYPE a = 1;                                       \
-  this->q += a;                                     \
-  EXPECT_EQ(this->q.a, i + a);                      \
+#define TEST_IN_PLACE_TYPED_TEST(TYPE)               \
+TYPED_TEST(QuaternionTests, AddInPlace_##TYPE) {     \
+  int i = 1, j = 2, k = 3, l = 4;                    \
+  this->SetUp(i, j, k, l);                           \
+  TYPE a = 1;                                        \
+  this->q += a;                                      \
+  EXPECT_EQ(this->q.a, i + a);                       \
+}                                                    \
+                                                     \
+TYPED_TEST(QuaternionTests, SubInPlace_##TYPE) {     \
+  int i = 1, j = 2, k = 3, l = 4;                    \
+  this->SetUp(i, j, k, l);                           \
+  TYPE a = 1;                                        \
+  this->q -= a;                                      \
+  EXPECT_EQ(this->q.a, i - a);                       \
 }
 
-ADD_IN_PLACE_TYPED_TEST(char)
+TEST_IN_PLACE_TYPED_TEST(char)
 
-ADD_IN_PLACE_TYPED_TEST(short)
+TEST_IN_PLACE_TYPED_TEST(short)
 
-ADD_IN_PLACE_TYPED_TEST(int)
+TEST_IN_PLACE_TYPED_TEST(int)
 
-ADD_IN_PLACE_TYPED_TEST(long)
+TEST_IN_PLACE_TYPED_TEST(long)
 
-ADD_IN_PLACE_TYPED_TEST(float)
+TEST_IN_PLACE_TYPED_TEST(float)
 
-ADD_IN_PLACE_TYPED_TEST(double)
-
-#define SUB_IN_PLACE_TYPED_TEST(TYPE)               \
-TYPED_TEST(QuaternionTests, SubInPlace_##TYPE) {    \
-  int i = 1, j = 2, k = 3, l = 4;                   \
-  this->SetUp(i, j, k, l);                          \
-  TYPE a = 1;                                       \
-  this->q -= a;                                     \
-  EXPECT_EQ(this->q.a, i - a);                      \
-}
-
-SUB_IN_PLACE_TYPED_TEST(char)
-
-SUB_IN_PLACE_TYPED_TEST(short)
-
-SUB_IN_PLACE_TYPED_TEST(int)
-
-SUB_IN_PLACE_TYPED_TEST(long)
-
-SUB_IN_PLACE_TYPED_TEST(float)
-
-SUB_IN_PLACE_TYPED_TEST(double)
+TEST_IN_PLACE_TYPED_TEST(double)
 
 int main(int argc, char **argv) {
 
