@@ -25,7 +25,7 @@ class QuaternionTests : public testing::Test {
   }
 };
 
-using MyTypes = ::testing::Types<char, unsigned char, short, unsigned short, int, unsigned int, long, unsigned long, long long, unsigned long long, float, double, long double>;
+using MyTypes = ::testing::Types<char, short, int, long, float, double>;
 
 TYPED_TEST_SUITE(QuaternionTests, MyTypes);
 
@@ -37,7 +37,7 @@ TYPED_TEST(QuaternionTests, ValueInitialization) {
 }
 
 TYPED_TEST(QuaternionTests, DirectInitialization00) {
-  unsigned int i = 5, j = 235, k = 67, l = 82;
+  int i = 5, j = 235, k = 67, l = 82;
   this->SetUp(i, j, k, l);
   if (static_cast<TypeParam>(i) == i) {
     EXPECT_EQ(this->q.a, i);
@@ -57,7 +57,7 @@ TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
   int i = 5;
   float j = 19168720229.277867697987;
   short k = -235;
-  long double l = -2.6;
+  double l = -2.6;
   this->SetUp(i, j, k, l);
   if (static_cast<TypeParam>(i) == i) {
     EXPECT_EQ(this->q.a, i);
@@ -73,21 +73,48 @@ TYPED_TEST(QuaternionTests, SecondDirectInitialization01) {
   }
 }
 
-TYPED_TEST(QuaternionTests, AddCharInPlace) {
-  int i = 1, j = 2, k = 3, l = 4;
-  this->SetUp(i, j, k, l);
-  char a = 1;
-  this->q += a;
-  EXPECT_EQ(this->q.a, i + a);
+
+#define ADD_IN_PLACE_TYPED_TEST(TYPE)               \
+TYPED_TEST(QuaternionTests, AddInPlace_##TYPE) {    \
+  int i = 1, j = 2, k = 3, l = 4;                   \
+  this->SetUp(i, j, k, l);                          \
+  TYPE a = 1;                                       \
+  this->q += a;                                     \
+  EXPECT_EQ(this->q.a, i + a);                      \
 }
 
-TYPED_TEST(QuaternionTests, AddUCharPlace) {
-  int i = 1, j = 2, k = 3, l = 4;
-  this->SetUp(i, j, k, l);
-  unsigned char a = 1;
-  this->q += a;
-  EXPECT_EQ(this->q.a, i + a);
+ADD_IN_PLACE_TYPED_TEST(char)
+
+ADD_IN_PLACE_TYPED_TEST(short)
+
+ADD_IN_PLACE_TYPED_TEST(int)
+
+ADD_IN_PLACE_TYPED_TEST(long)
+
+ADD_IN_PLACE_TYPED_TEST(float)
+
+ADD_IN_PLACE_TYPED_TEST(double)
+
+#define SUB_IN_PLACE_TYPED_TEST(TYPE)               \
+TYPED_TEST(QuaternionTests, SubInPlace_##TYPE) {    \
+  int i = 1, j = 2, k = 3, l = 4;                   \
+  this->SetUp(i, j, k, l);                          \
+  TYPE a = 1;                                       \
+  this->q -= a;                                     \
+  EXPECT_EQ(this->q.a, i - a);                      \
 }
+
+SUB_IN_PLACE_TYPED_TEST(char)
+
+SUB_IN_PLACE_TYPED_TEST(short)
+
+SUB_IN_PLACE_TYPED_TEST(int)
+
+SUB_IN_PLACE_TYPED_TEST(long)
+
+SUB_IN_PLACE_TYPED_TEST(float)
+
+SUB_IN_PLACE_TYPED_TEST(double)
 
 int main(int argc, char **argv) {
 
