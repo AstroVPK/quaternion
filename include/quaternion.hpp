@@ -53,6 +53,8 @@ namespace algebra {
 
       const quaternion<T> & operator-=(quaternion<T> const & q);
 
+      const quaternion<T> & operator*=(T const & r);
+
   };
 
   template <typename T>
@@ -129,6 +131,15 @@ namespace algebra {
     return *this;
   }
 
+  template<typename T>
+  const quaternion<T>& algebra::quaternion<T>::operator*=(T const & r) {
+    this->a *= r;
+    this->b *= r;
+    this->c *= r;
+    this->d *= r;
+    return *this;
+  }
+
   template <typename T>
   std::ostream& operator<<(std::ostream& os, const quaternion<T>& q) {
     os << "(" << q.a << "," << q.b << "," << q.c << "," << q.d << ")";
@@ -163,6 +174,16 @@ namespace algebra {
   template <typename T1, typename T2>
   const quaternion<typename std::common_type<T1, T2>::type> operator-(const T1& q1, const quaternion<T2>& q2) {
     return quaternion<typename std::common_type<T1, T2>::type>(static_cast<typename std::common_type<T1, T2>::type>(q1) - static_cast<typename std::common_type<T1, T2>::type>(q2.a), q2.b, q2.c, q2.d);
+  }
+
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator*(const T1& r, const quaternion<T2>& q) {
+    return quaternion<typename std::common_type<T1, T2>::type>(r*q.a, r*q.b, r*q.c, r*q.d);
+  }
+
+  template <typename T1, typename T2>
+  const quaternion<typename std::common_type<T1, T2>::type> operator*(const quaternion<T1>& q, const T2& r) {
+    return quaternion<typename std::common_type<T1, T2>::type>(r*q.a, r*q.b, r*q.c, r*q.d);
   }
 
 }
